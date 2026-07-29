@@ -10,12 +10,12 @@ export default function App() {
 
     <View style={styles.inputFlex}>
       <Text style={styles.labelText}>Enter your name:</Text>
-      <TextInput style={styles.InputText} placeholder="Jane"/>
+      <TextInput style={styles.InputText} placeholder="Jane" autoCapitalize="words"/>
     </View>  
 
     <View style={styles.inputFlex}>
       <Text style={styles.labelText}>Enter your surname:</Text>
-      <TextInput style={styles.InputText} placeholder="Arhtur"/>
+      <TextInput style={styles.InputText} placeholder="Arhtur" autoCapitalize="words"/>
     </View>
 
       <Button title="Add user"/>"
