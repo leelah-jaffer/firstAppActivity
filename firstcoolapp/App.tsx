@@ -3,12 +3,14 @@ import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Welcome to my App!</Text>
-      <Text>enter your name:</Text>
+    <View>
+
+      <Text style={styles.welcomeText}>Welcome to my App!</Text>
+
+      <Text>Enter your name:</Text>
       <TextInput placeholder="Jane"/>
-      <Text>Enter in your name</Text>
-      <TextInput placeholder="Angie"/>
+      <Text>Enter your surname:</Text>
+      <TextInput placeholder="Arhtur"/>
 
       <Button title="Add user"/>"
 
@@ -18,10 +20,11 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#cf056a',
-    alignItems: 'center',
-    justifyContent: 'center',
+  welcomeText: {
+   paddingTop: 50,
+   color: 'pink',
+   fontWeight: 'bold',
+   fontSize: 30,
+   textAlign: 'center'
   },
-});
+});    
