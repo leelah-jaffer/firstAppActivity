@@ -4,17 +4,28 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useState } from 'react';
 
+const Stack = createNativeStackNavigator();
+
 export default function App() {
+return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={MainScreen} />
+      </Stack.Navigator>  
+    </NavigationContainer>
+  );
+  
+};
+
+function MainScreen() {
 
   const [name, setName] = useState('');
   const [surname, setSurname] = useState('');
 
   console.log("App is running");
-
-
   return (
-    <NavigationContainer>
-    <View>
+
+  <View>
       <Image style={styles.mainImage} 
       source={require('./_images/minecraft.jpg')}/>
       <Text style={styles.welcomeText}>Welcome to my App!</Text>
@@ -48,10 +59,9 @@ export default function App() {
 
       <StatusBar style="auto" />
     </View>
-     </NavigationContainer>
   );
-  
 }
+
 
 const styles = StyleSheet.create({
   welcomeText: {
