@@ -13,6 +13,7 @@ export default function App() {
 
 
   return (
+    <NavigationContainer>
     <View>
       <Image style={styles.mainImage} 
       source={require('./_images/minecraft.jpg')}/>
@@ -47,7 +48,9 @@ export default function App() {
 
       <StatusBar style="auto" />
     </View>
+     </NavigationContainer>
   );
+  
 }
 
 const styles = StyleSheet.create({
