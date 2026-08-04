@@ -3,24 +3,54 @@ import { StyleSheet, Text, View, TextInput, Button, Image} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useState } from 'react';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
-const Stack = createNativeStackNavigator();
+ type RootStackParamList = {
+   Home: undefined;
+   ViewDetails: {
+    NameSend: string;
+    SurnameSend: string; 
+  };
+ };
+  
+
+const Stack = createNativeStackNavigator<RootStackParamList>();
+
+type MainScreenProps = NativeStackScreenProps<
+RootStackParamList,
+'Home'
+>;
+
+type ViewDetailsProps = NativeStackScreenProps<
+RootStackParamList,
+'ViewDetails'
+>;
 
 export default function App() {
 return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Home" component={MainScreen} />
+        <Stack.Screen name="Home" component={MainScreen}/>
+        <Stack.Screen name="ViewDetails" component={ViewDetails}/>
       </Stack.Navigator>  
     </NavigationContainer>
   );
   
 };
 
-function MainScreen() {
+function MainScreen({navigation}: MainScreenProps) {
 
-  const [name, setName] = useState('');
-  const [surname, setSurname] = useState('');
+  <Button title="Add User"
+          onPress={() => {
+            navigation.navigate('ViewDetails', {
+              NameSend: Name,
+              SurnameSend: Surname
+            });
+          }}
+        />
+
+  const [Name, setName] = useState('');
+  const [Surname, setSurname] = useState('');
 
   console.log("App is running");
   return (
@@ -50,18 +80,27 @@ function MainScreen() {
                  onChangeText={newText => setSurname(newText)}/>
     </View>
 
-      <Button title="Add user"
-         onPress={() => {
-          console.log("Name: " + name + 
-            ", Surname: " + surname);
-         }}
-      />
+    
+
+      
 
       <StatusBar style="auto" />
     </View>
   );
 }
 
+
+
+function ViewDetails( {navigation, route}: ViewDetailsProps) {
+  const NameGet = route.params.NameSend;
+  const SurnameGet = route.params.SurnameSend;
+
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Text>Name: {NameGet} Surname: {SurnameGet}</Text>
+    </View>
+  )
+}
 
 const styles = StyleSheet.create({
   welcomeText: {
