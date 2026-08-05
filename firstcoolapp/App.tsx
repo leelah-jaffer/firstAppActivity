@@ -1,8 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, TextInput, Button, Image, ScrollView, SafeAreaView, Animated} from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, Image, ScrollView, SafeAreaView, Animated, ViewStyle, StyleProp} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator, NativeStackScreenProps } from '@react-navigation/native-stack';
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, ReactNode } from 'react';
 
 
 
@@ -43,14 +43,7 @@ return (
 
 function MainScreen({navigation}: MainScreenProps) {
 
-  <Button title="Add User"                               // Button added in 
-          onPress={() => {
-            navigation.navigate('ViewDetails', {
-              NameSend: Name,
-              SurnameSend: Surname
-            });
-          }}
-        />
+  
 
   const [Name, setName] = useState('');                 // "Variable" for the text input field for the name
   const [Surname, setSurname] = useState('');
@@ -70,7 +63,7 @@ function MainScreen({navigation}: MainScreenProps) {
 
 
 // A view for the style, this is inside the first view 
-<FaidInView>
+<FadeInView>
     <View style={styles.inputFlex}>
       <Text style={styles.labelText}>Enter your name:</Text>
       <TextInput style={styles.InputText} 
@@ -80,7 +73,7 @@ function MainScreen({navigation}: MainScreenProps) {
                         keyboardType="default"
                         onChangeText={newText => setName(newText)}/>
     </View>  
-</FaidInView>
+
 
     <View style={styles.inputFlex}>
       <Text style={styles.labelText}>Enter your surname:</Text>
@@ -91,7 +84,19 @@ function MainScreen({navigation}: MainScreenProps) {
                  keyboardType="default"
                  onChangeText={newText => setSurname(newText)}/>
     </View>
-      
+
+    <Button title="Add User"                               // Button added in 
+          onPress={() => {
+            navigation.navigate('ViewDetails', {
+              NameSend: Name,
+              SurnameSend: Surname
+            });
+          }}
+        />
+
+        
+</FadeInView>
+
       <StatusBar style="auto" />
       </ScrollView>
       </SafeAreaView>
@@ -112,7 +117,12 @@ function ViewDetails( {navigation, route}: ViewDetailsProps) {
   )
 }
 
-const FaidInView = (props) => {
+interface FadeInViewProps {
+  children: ReactNode;
+  style?: StyleProp<ViewStyle>
+}
+
+const FadeInView = ({ children, style }: FadeInViewProps) => {
   const fadeAnim = useRef(new Animated.Value(0)).current
   
   useEffect(() => {
@@ -128,11 +138,10 @@ const FaidInView = (props) => {
 
   return (
     <Animated.View style={{
-    ...props.style,
-    opacity: fadeAnim,  // added in the fade in effect, after this we have to assign it
-  
+    ...(style as object),  // added in the fade in effect, after this we have to assign it
+    opacity: fadeAnim,  
     }}>
-     {props.children}
+     {children}
     </Animated.View>
 )
 
