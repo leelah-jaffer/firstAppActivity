@@ -31,8 +31,9 @@ export default function App() {
 return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Home" component={MainScreen}/>
-        <Stack.Screen name="ViewDetails" component={ViewDetails}/>
+        <Stack.Screen name="Home" component={MainScreen} />
+        <Stack.Screen name="ViewDetails" component={ViewDetails} 
+        options={{ animation: 'slide_from_right' }} />
       </Stack.Navigator>  
     </NavigationContainer>
   );
@@ -94,7 +95,7 @@ function MainScreen({navigation}: MainScreenProps) {
           }}
         />
 
-        
+
 </FadeInView>
 
       <StatusBar style="auto" />
