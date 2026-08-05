@@ -70,6 +70,7 @@ function MainScreen({navigation}: MainScreenProps) {
 
 
 // A view for the style, this is inside the first view 
+<FaidInView>
     <View style={styles.inputFlex}>
       <Text style={styles.labelText}>Enter your name:</Text>
       <TextInput style={styles.InputText} 
@@ -79,6 +80,7 @@ function MainScreen({navigation}: MainScreenProps) {
                         keyboardType="default"
                         onChangeText={newText => setName(newText)}/>
     </View>  
+</FaidInView>
 
     <View style={styles.inputFlex}>
       <Text style={styles.labelText}>Enter your surname:</Text>
@@ -97,7 +99,7 @@ function MainScreen({navigation}: MainScreenProps) {
   );
 }
 
-
+//ViewDetails Function, this is the second screen that will be displayed when the button is pressed
 
 function ViewDetails( {navigation, route}: ViewDetailsProps) {
   const NameGet = route.params.NameSend;
@@ -110,7 +112,7 @@ function ViewDetails( {navigation, route}: ViewDetailsProps) {
   )
 }
 
-const FaidInView = (props: any) => {
+const FaidInView = (props) => {
   const fadeAnim = useRef(new Animated.Value(0)).current
   
   useEffect(() => {
@@ -127,7 +129,7 @@ const FaidInView = (props: any) => {
   return (
     <Animated.View style={{
     ...props.style,
-    opacity: fadeAnim,
+    opacity: fadeAnim,  // added in the fade in effect, after this we have to assign it
   
     }}>
      {props.children}
