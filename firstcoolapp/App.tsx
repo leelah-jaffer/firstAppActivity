@@ -1,9 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, TextInput, Button, Image, ScrollView, SafeAreaView} from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, Image, ScrollView, SafeAreaView, Animated} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { useState } from 'react';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { createNativeStackNavigator, NativeStackScreenProps } from '@react-navigation/native-stack';
+import { useState, useRef, useEffect } from 'react';
+
 
 
  type RootStackParamList = {
@@ -39,9 +39,11 @@ return (
   
 };
 
+// MainScreen Function
+
 function MainScreen({navigation}: MainScreenProps) {
 
-  <Button title="Add User"
+  <Button title="Add User"                               // Button added in 
           onPress={() => {
             navigation.navigate('ViewDetails', {
               NameSend: Name,
@@ -50,20 +52,24 @@ function MainScreen({navigation}: MainScreenProps) {
           }}
         />
 
-  const [Name, setName] = useState('');
+  const [Name, setName] = useState('');                 // "Variable" for the text input field for the name
   const [Surname, setSurname] = useState('');
 
   console.log("App is running");
   
   return (
-  <View>
+  <View>                       // A View for the style, it has a view inside of a view, the first view is for the style and the second view is for the text input field
     <SafeAreaView>
      <ScrollView>
+
   
+     // Image added in the app
       <Image style={styles.mainImage} 
       source={require('./_images/minecraft.jpg')}/>
       <Text style={styles.welcomeText}>Welcome to my App!</Text>
 
+
+// A view for the style, this is inside the first view 
     <View style={styles.inputFlex}>
       <Text style={styles.labelText}>Enter your name:</Text>
       <TextInput style={styles.InputText} 
