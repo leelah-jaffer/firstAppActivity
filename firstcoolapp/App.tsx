@@ -110,6 +110,33 @@ function ViewDetails( {navigation, route}: ViewDetailsProps) {
   )
 }
 
+const FaidInView = (props: any) => {
+  const fadeAnim = useRef(new Animated.Value(0)).current
+  
+  useEffect(() => {
+    Animated.timing(
+      fadeAnim,
+      {
+        toValue: 1,
+        duration: 4000,
+        useNativeDriver: false   // without this, u wouldnt be able to run it on a mobile app 
+      }
+    ).start();
+  },[fadeAnim])
+
+  return (
+    <Animated.View style={{
+    ...props.style,
+    opacity: fadeAnim,
+  
+    }}>
+     {props.children}
+    </Animated.View>
+)
+
+}
+
+
 const styles = StyleSheet.create({
   welcomeText: {
    paddingTop: 70,
