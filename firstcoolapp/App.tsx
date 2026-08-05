@@ -1,9 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, TextInput, Button, Image} from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, Image, ScrollView, SafeAreaView} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useState } from 'react';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+
 
  type RootStackParamList = {
    Home: undefined;
@@ -53,9 +54,12 @@ function MainScreen({navigation}: MainScreenProps) {
   const [Surname, setSurname] = useState('');
 
   console.log("App is running");
+  
   return (
-
   <View>
+    <SafeAreaView>
+     <ScrollView>
+  
       <Image style={styles.mainImage} 
       source={require('./_images/minecraft.jpg')}/>
       <Text style={styles.welcomeText}>Welcome to my App!</Text>
@@ -79,12 +83,10 @@ function MainScreen({navigation}: MainScreenProps) {
                  keyboardType="default"
                  onChangeText={newText => setSurname(newText)}/>
     </View>
-
-    
-
       
-
       <StatusBar style="auto" />
+      </ScrollView>
+      </SafeAreaView>
     </View>
   );
 }
