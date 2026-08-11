@@ -48,7 +48,8 @@ function MainScreen({navigation}: MainScreenProps) {
 
   const [Name, setName] = useState('');                 // "Variable" for the text input field for the name
   const [Surname, setSurname] = useState('');
-  const [Error, setError] = useState('');              // "Variable" for the text input field for the surname
+  const [Error, setError] = useState(false);              // "Variable" for the text input field for the surname
+
 
   console.log("App is running");
   
@@ -94,15 +95,20 @@ function MainScreen({navigation}: MainScreenProps) {
               NameSend: Name,
               SurnameSend: Surname
             });
-            setError("")
+            setError(false)
           } else {
-            setError("Please fill in all the fields!")
+            setError(true)
           }
           }}
         />
 
 
 </FadeInView>
+
+// In line error, a quicker way for the error
+<Text style={Error? styles.errorRed : styles.blank}>
+{Error? "Please fill in all fields!" : ""}
+</Text>
 
 <Text style= {styles.errorRed}>
   {Error}
@@ -132,7 +138,7 @@ function isEmpty(value : any){
   return(
     (value == null) ||
 
-    (value.hasOwnProperty('Length') && value.Length === 0) ||
+    (value.hasOwnProperty('length') && value.length === 0) ||
 
     (value.constructor === Object && Object.keys(value).length === 0)
   )
@@ -204,8 +210,12 @@ inputFlex: {
 errorRed: {
   color: 'red',
   fontWeight: 'bold',
-  fontSize: 30,
+  fontSize: 15,
   textAlign: 'center',
+},
+
+blank: {
+  fontSize: 0
 }
 
 });    
