@@ -33,7 +33,7 @@ return (
       <Stack.Navigator>
         <Stack.Screen name="Home" component={MainScreen} />
         <Stack.Screen name="ViewDetails" component={ViewDetails} 
-        options={{ animation: 'slide_from_right' }} />
+        options={{ animation: 'slide_from_bottom' }} />
       </Stack.Navigator>  
     </NavigationContainer>
   );
@@ -48,6 +48,7 @@ function MainScreen({navigation}: MainScreenProps) {
 
   const [Name, setName] = useState('');                 // "Variable" for the text input field for the name
   const [Surname, setSurname] = useState('');
+  const [Error, setError] = useState('');              // "Variable" for the text input field for the surname
 
   console.log("App is running");
   
@@ -88,15 +89,24 @@ function MainScreen({navigation}: MainScreenProps) {
 
     <Button title="Add User"                               // Button added in 
           onPress={() => {
-            navigation.navigate('ViewDetails', {
+            if((isEmpty(Name)==false) && (isEmpty(Surname)==false)){
+              navigation.navigate('ViewDetails', {
               NameSend: Name,
               SurnameSend: Surname
             });
+            setError("")
+          } else {
+            setError("Please fill in all the fields!")
+          }
           }}
         />
 
 
 </FadeInView>
+
+<Text style= {styles.errorRed}>
+  {Error}
+</Text>
 
       <StatusBar style="auto" />
       </ScrollView>
@@ -115,6 +125,16 @@ function ViewDetails( {navigation, route}: ViewDetailsProps) {
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Text>Name: {NameGet} Surname: {SurnameGet}</Text>
     </View>
+  );
+};
+
+function isEmpty(value : any){
+  return(
+    (value == null) ||
+
+    (value.hasOwnProperty('Length') && value.Length === 0) ||
+
+    (value.constructor === Object && Object.keys(value).length === 0)
   )
 }
 
@@ -179,6 +199,13 @@ inputFlex: {
   flexDirection: 'row',
   marginTop: 25,
   justifyContent: 'space-evenly', 
+},
+
+errorRed: {
+  color: 'red',
+  fontWeight: 'bold',
+  fontSize: 30,
+  textAlign: 'center',
 }
 
 });    
