@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, TextInput, Button, Image, ScrollView, SafeAreaV
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator, NativeStackScreenProps } from '@react-navigation/native-stack';
 import { useState, useRef, useEffect, ReactNode } from 'react';
+import { RadioButton} from 'react-native-paper';
 
 
 
@@ -216,6 +217,14 @@ errorRed: {
 
 blank: {
   fontSize: 0
-}
+},
+
+radioContainer: {
+  flex: 0,
+  backgroundColor: ' #00b359',
+  justifyContent: 'center',
+  alignItems: 'center'
+},
+
 
 });    
