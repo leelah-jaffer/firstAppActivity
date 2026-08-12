@@ -181,7 +181,7 @@ const styles = StyleSheet.create({
    paddingTop: 70,
    color: 'purple',
    fontWeight: 'bold',
-   fontSize: 50,
+   fontSize: 30,
    textAlign: 'center'
   },
 
@@ -195,8 +195,8 @@ InputText:{
 },
 
 mainImage: {
-  height: 350,
-  width: 400,
+  height: 200,
+  width: 500,
   paddingTop: 60,
   justifyContent: 'center',
   alignItems: 'center',
@@ -226,5 +226,33 @@ radioContainer: {
   alignItems: 'center'
 },
 
+radioButton: {
+  flexDirection: 'row',
+  alignItems: 'center',
+},
+
+radioLabel: {
+  marginLeft: 5,
+  fontSize: 15,
+  color: 'black',
+},
+
+radioGroup: {
+  flexDirection: 'row',
+  alignItems: 'center',
+  justifyContent: 'space-around',
+  marginTop: 20,
+  borderRadius: 10,
+  backgroundColor: '#80ffbf',
+  padding: 15,
+  elevation: 5,
+  shadowColor: '#1f2e2e',
+  shadowOffset: { 
+    width: 0,
+    height: 1
+  },
+  shadowOpacity: 0.25,                                      //minimum 0, max is 1 of opacity
+  shadowRadius: 3
+}
 
 });    
