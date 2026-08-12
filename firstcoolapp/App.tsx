@@ -50,6 +50,7 @@ function MainScreen({navigation}: MainScreenProps) {
   const [Name, setName] = useState('');                 // "Variable" for the text input field for the name
   const [Surname, setSurname] = useState('');
   const [Error, setError] = useState(false);              // "Variable" for the text input field for the surname
+  
 
 
   console.log("App is running");
@@ -127,11 +128,58 @@ function MainScreen({navigation}: MainScreenProps) {
 function ViewDetails( {navigation, route}: ViewDetailsProps) {
   const NameGet = route.params.NameSend;
   const SurnameGet = route.params.SurnameSend;
+  const [selectedValue, setSelectedValue] = useState('0');
 
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Name: {NameGet} Surname: {SurnameGet}</Text>
+      <View style={{ flex: 0, alignItems: 'center', justifyContent: 'center' }}>
+      <Text style={{fontWeight: 'bold', fontSize: 20}}>Hello {NameGet} {SurnameGet} !</Text>
+      <Text>Please select a language:</Text>
+      </View>
+
+       <View style={styles.radioContainer}> 
+        <View style={styles.radioGroup}>
+          <View style={styles.radioButton}>
+            <RadioButton.Android
+            value = "1"
+            status={selectedValue == "1" ? "checked" : "unchecked"}
+
+            onPress={(() => setSelectedValue("1"))}
+            color="#ff66b3"
+            />
+             <Text style={styles.radioLabel}>Python</Text>
+
+          </View>
+
+          <View style={styles.radioButton}>
+            <RadioButton.Android
+            value = "2"
+            status={selectedValue == "2" ? "checked" : "unchecked"}
+
+            onPress={(() => setSelectedValue("2"))}
+            color="#e0f333"
+            />
+            <Text style={styles.radioLabel}>React Native</Text>
+            
+
+          </View>
+
+          <View style={styles.radioButton}>
+            <RadioButton.Android
+            value = "3"
+            status={selectedValue == "3" ? "checked" : "unchecked"}
+
+            onPress={(() => setSelectedValue("3"))}
+            color="#644ff0"
+            />
+             <Text style={styles.radioLabel}>Kotlin</Text>
+
+          </View>
+         </View>
+        </View>
     </View>
+
+   
   );
 };
 
@@ -195,9 +243,9 @@ InputText:{
 },
 
 mainImage: {
-  height: 200,
+  height: 150,
   width: 500,
-  paddingTop: 60,
+  paddingTop: 5,
   justifyContent: 'center',
   alignItems: 'center',
 },
@@ -221,7 +269,7 @@ blank: {
 
 radioContainer: {
   flex: 0,
-  backgroundColor: ' #00b359',
+  backgroundColor: ' #1c50ec',
   justifyContent: 'center',
   alignItems: 'center'
 },
@@ -243,7 +291,7 @@ radioGroup: {
   justifyContent: 'space-around',
   marginTop: 20,
   borderRadius: 10,
-  backgroundColor: '#80ffbf',
+  backgroundColor: '#09c667',
   padding: 15,
   elevation: 5,
   shadowColor: '#1f2e2e',
