@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, TextInput, Button, Image, ScrollView, SafeAreaView, Animated, ViewStyle, StyleProp} from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, Image, ScrollView, SafeAreaView, Animated, ViewStyle, StyleProp, ImageSourcePropType} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator, NativeStackScreenProps } from '@react-navigation/native-stack';
 import { useState, useRef, useEffect, ReactNode } from 'react';
@@ -129,6 +129,7 @@ function ViewDetails( {navigation, route}: ViewDetailsProps) {
   const NameGet = route.params.NameSend;
   const SurnameGet = route.params.SurnameSend;
   const [selectedValue, setSelectedValue] = useState('0');
+  const [ImageBlock, setImage] = useState<ImageSourcePropType | undefined>(undefined);
 
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -174,6 +175,34 @@ function ViewDetails( {navigation, route}: ViewDetailsProps) {
             />
              <Text style={styles.radioLabel}>Kotlin</Text>
 
+           <View style={{flex: 1}}> 
+            <Text style={{fontWeight: "bold", flex: 0, paddingTop: 30, 
+              justifyContent: 'center', textAlign: 'center', alignItems: 'center'}}>
+            </Text>
+          
+          <Button title="Click Me!"
+               onPress={() =>{
+               
+                switch(selectedValue){
+                  case "1":
+                    setImage(require('./images/react-native.png'));
+                    break;
+                  case "2": 
+                    setImage(require('./images/python.jpg')); 
+                    break;
+                  case "3":
+                    setImage(require('./images/kotlin.png')); 
+                    break;
+                  default:
+                    setImage(undefined);  
+                }
+               }}
+               />
+               <View style={styles.container}>
+                  <Image source={ ImageBlock } style={styles.viewImage}></Image>
+               </View>
+
+           </View>
           </View>
          </View>
         </View>
@@ -301,6 +330,19 @@ radioGroup: {
   },
   shadowOpacity: 0.25,                                      //minimum 0, max is 1 of opacity
   shadowRadius: 3
+},
+
+container: {
+   width: 350,
+   height: 350,
+   alignContent: 'center'
+},
+
+viewImage: {
+   width: 350,
+   height: 350,
+   alignContent: 'center'
+
 }
 
 });    
