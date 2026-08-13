@@ -56,18 +56,18 @@ function MainScreen({navigation}: MainScreenProps) {
   console.log("App is running");
   
   return (
-  <View>                       // A View for the style, it has a view inside of a view, the first view is for the style and the second view is for the text input field
+     // A View for the style, it has a view inside of a view, the first view is for the style and the second view is for the text input field
+  <View>                      
     <SafeAreaView>
      <ScrollView>
-
+{/* // Image added in the app*/}
   
-     // Image added in the app
+     
       <Image style={styles.mainImage} 
       source={require('./_images/minecraft.jpg')}/>
       <Text style={styles.welcomeText}>Welcome to my App!</Text>
 
-
-// A view for the style, this is inside the first view 
+{/*// A view for the style, this is inside the first view  */}
 <FadeInView>
     <View style={styles.inputFlex}>
       <Text style={styles.labelText}>Enter your name:</Text>
@@ -106,8 +106,7 @@ function MainScreen({navigation}: MainScreenProps) {
 
 
 </FadeInView>
-
-// In line error, a quicker way for the error
+{/*// In line error, a quicker way for the error */}
 <Text style={Error? styles.errorRed : styles.blank}>
 {Error? "Please fill in all fields!" : ""}
 </Text>
@@ -174,24 +173,25 @@ function ViewDetails( {navigation, route}: ViewDetailsProps) {
             color="#644ff0"
             />
              <Text style={styles.radioLabel}>Kotlin</Text>
+               </View>
+             </View>
 
            <View style={{flex: 1}}> 
             <Text style={{fontWeight: "bold", flex: 0, paddingTop: 30, 
               justifyContent: 'center', textAlign: 'center', alignItems: 'center'}}>
             </Text>
-          
-          <Button title="Click Me!"
+           <Button title="Click Me!"
                onPress={() =>{
                
                 switch(selectedValue){
                   case "1":
-                    setImage(require('./images/react-native.png'));
+                    setImage(require('./_images/react-native.png'));
                     break;
                   case "2": 
-                    setImage(require('./images/python.jpg')); 
+                    setImage(require('./_images/python.jpg')); 
                     break;
                   case "3":
-                    setImage(require('./images/kotlin.png')); 
+                    setImage(require('./_images/kotlin.png')); 
                     break;
                   default:
                     setImage(undefined);  
@@ -205,8 +205,6 @@ function ViewDetails( {navigation, route}: ViewDetailsProps) {
            </View>
           </View>
          </View>
-        </View>
-    </View>
 
    
   );
@@ -333,14 +331,14 @@ radioGroup: {
 },
 
 container: {
-   width: 350,
-   height: 350,
+   width: 10,
+   height: 10,
    alignContent: 'center'
 },
 
 viewImage: {
-   width: 350,
-   height: 350,
+   width: 150,
+   height: 150,
    alignContent: 'center'
 
 }
