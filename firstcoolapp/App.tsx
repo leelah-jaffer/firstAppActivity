@@ -13,6 +13,7 @@ import { RadioButton} from 'react-native-paper';
     NameSend: string;
     SurnameSend: string; 
   };
+  ListSkills: undefined;
  };
   
 
@@ -28,13 +29,24 @@ RootStackParamList,
 'ViewDetails'
 >;
 
+type ListSkillsProps = NativeStackScreenProps<
+RootStackParamList,
+'ListSkills'
+>;
+
+
+
 export default function App() {
 return (
     <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="Home" component={MainScreen}/>
       <Stack.Navigator>
         <Stack.Screen name="Home" component={MainScreen} />
-        <Stack.Screen name="ViewDetails" component={ViewDetails} 
+        <Stack.Screen name="ViewDetails" component={ViewDetails}
         options={{ animation: 'slide_from_bottom' }} />
+        <Stack.Screen name="ListSkills" component={ListSkills}/>
+        </Stack.Navigator>
       </Stack.Navigator>  
     </NavigationContainer>
   );
@@ -225,6 +237,18 @@ function ViewDetails( {navigation, route}: ViewDetailsProps) {
    
   );
 };
+
+function ListSkills({ navigation, route}: ListSkillsProps) {
+  return(
+    <View>
+      <SafeAreaView>
+        <ScrollView>
+
+      </ScrollView>
+      </SafeAreaView>
+      </View>
+  )
+}
 
 function isEmpty(value : any){
   return(
