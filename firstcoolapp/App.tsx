@@ -127,8 +127,22 @@ function MainScreen({navigation}: MainScreenProps) {
 function ViewDetails( {navigation, route}: ViewDetailsProps) {
   const NameGet = route.params.NameSend;
   const SurnameGet = route.params.SurnameSend;
+
+
+  
+  const [blockArray] = useState<ImageSourcePropType[]>([
+    undefined,
+
+ 
+  require('./_images/kotlin.png'),
+  require ('./_images/python.jpg'),
+  require('./_images/react-native.png'),
+]);
+
+  const [iSelected, setIntValue] = useState(0);
   const [selectedValue, setSelectedValue] = useState('0');
-  const [ImageBlock, setImage] = useState<ImageSourcePropType | undefined>(undefined);
+  // const [ImageBlock, setImage] = useState<ImageSourcePropType | undefined>(undefined);
+  
 
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -147,7 +161,7 @@ function ViewDetails( {navigation, route}: ViewDetailsProps) {
             onPress={(() => setSelectedValue("1"))}
             color="#ff66b3"
             />
-             <Text style={styles.radioLabel}>Python</Text>
+             <Text style={styles.radioLabel}>React Native</Text>
 
           </View>
 
@@ -159,7 +173,7 @@ function ViewDetails( {navigation, route}: ViewDetailsProps) {
             onPress={(() => setSelectedValue("2"))}
             color="#e0f333"
             />
-            <Text style={styles.radioLabel}>React Native</Text>
+            <Text style={styles.radioLabel}>Python</Text>
             
 
           </View>
@@ -182,24 +196,26 @@ function ViewDetails( {navigation, route}: ViewDetailsProps) {
             </Text>
            <Button title="Click Me!"
                onPress={() =>{
+
+                setIntValue(Number(selectedValue));
                
-                switch(selectedValue){
-                  case "1":
-                    setImage(require('./_images/react-native.png'));
-                    break;
-                  case "2": 
-                    setImage(require('./_images/python.jpg')); 
-                    break;
-                  case "3":
-                    setImage(require('./_images/kotlin.png')); 
-                    break;
-                  default:
-                    setImage(undefined);  
-                }
+                // switch(selectedValue){
+                //   case "1":
+                //     setImage(require('./_images/react-native.png'));
+                //     break;
+                //   case "2": 
+                //     setImage(require('./_images/python.jpg')); 
+                //     break;
+                //   case "3":
+                //     setImage(require('./_images/kotlin.png')); 
+                //     break;
+                //   default:
+                //     setImage(undefined);  
+                // }
                }}
                />
                <View style={styles.container}>
-                  <Image source={ ImageBlock } style={styles.viewImage}></Image>
+                  <Image source={blockArray[iSelected]} style={styles.viewImage}></Image>
                </View>
 
            </View>
