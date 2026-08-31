@@ -41,7 +41,7 @@ TabParamList,
 export default function App() {
 return (
     <NavigationContainer>
-      <Tab.Navigator>
+      <Tab.Navigator screenOptions={{ tabBarStyle: { marginTop: 30,},}}>
         <Tab.Screen name="Home" component={MainScreen}/>
         <Tab.Screen name="ViewDetails" component={ViewDetails} />
         <Tab.Screen name="ListSkills" component={ListSkills}/>
