@@ -4,6 +4,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator, NativeStackScreenProps } from '@react-navigation/native-stack';
 import { useState, useRef, useEffect, ReactNode } from 'react';
 import { RadioButton} from 'react-native-paper';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import { MaterialTopTabScreenProps } from '@react-navigation/material-top-tabs';
 
 
 
@@ -239,11 +241,55 @@ function ViewDetails( {navigation, route}: ViewDetailsProps) {
 };
 
 function ListSkills({ navigation, route}: ListSkillsProps) {
+
+  const [Skills] = useState<string[]>([]);
+  const [txtSkill, setSkill] = useState('');
+
+  const renderSkills = () => {
+
+  const arrOutput = [];
+  
+
+  for(let i=0; i < Skills.length; i++){
+    arrOutput.push(
+      <Text key={i} style={styles.skillText}>
+        {Skills[i]}
+        </Text>
+    );
+  }
+  return arrOutput;
+  }
+
   return(
-    <View>
+    <View style={styles.appContainer}>
       <SafeAreaView>
         <ScrollView>
+<View style={styles.mainImage}>
+  <Image style={styles.bannerImg} source={require('./_images/banner.jpg')}/>
+    </View>
 
+    <Text style={styles.welcomeText}>List Your Skills</Text>
+    <View style={styles.inputContainer}>
+      <TextInput style={styles.textInput} placeholder="Enter your Skills"
+                 onChangeText={newText => setSkill(newText)}
+                 value={txtSkill}
+      
+      />
+
+      <Button title="Add Skill"
+      onPress={() => {
+        Skills.push(txtSkill);
+        setSkill("");
+
+
+      }}/>
+
+    </View>
+
+    <View style={styles.skillContainer}> 
+
+
+    </View>
       </ScrollView>
       </SafeAreaView>
       </View>
@@ -381,6 +427,52 @@ viewImage: {
    height: 150,
    alignContent: 'center'
 
-}
+},
+
+bannerImg: {
+  height: 350,
+  alignContent: 'center'
+},
+
+inputContainer: {
+  flex: 1,
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  marginBottom: 25,
+  borderBottomWidth: 1,
+  borderBottomColor: '#f730c5',
+},
+
+textInput: {
+  borderWidth: 1,
+  borderColor: '#000',
+  width: '70%',
+  margin: 10,
+  padding: 5
+},
+
+appContainer: {
+  flex: 1,
+  padding: 50,
+  paddingHorizontal: 15,
+},
+
+skillContainer: {
+  flex: 5
+},
+
+skillText: {
+  fontSize: 15,
+  marginVertical: 5,
+  borderBlockColor: 'black',
+  borderBottomWidth: 1
+},
+
+
+
+
+
+
 
 });    
