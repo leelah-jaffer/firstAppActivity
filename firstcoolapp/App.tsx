@@ -9,7 +9,7 @@ import { MaterialTopTabScreenProps } from '@react-navigation/material-top-tabs';
 
 
 
- type RootStackParamList = {
+ type TabParamList = {
    Home: undefined;
    ViewDetails: {
     NameSend: string;
@@ -19,20 +19,20 @@ import { MaterialTopTabScreenProps } from '@react-navigation/material-top-tabs';
  };
   
 
-const Stack = createNativeStackNavigator<RootStackParamList>();
+const Tab = createMaterialTopTabNavigator<TabParamList>();
 
-type MainScreenProps = NativeStackScreenProps<
-RootStackParamList,
+type MainScreenProps = MaterialTopTabScreenProps<
+TabParamList,
 'Home'
 >;
 
-type ViewDetailsProps = NativeStackScreenProps<
-RootStackParamList,
+type ViewDetailsProps =  MaterialTopTabScreenProps<
+TabParamList,
 'ViewDetails'
 >;
 
-type ListSkillsProps = NativeStackScreenProps<
-RootStackParamList,
+type ListSkillsProps =  MaterialTopTabScreenProps<
+TabParamList,
 'ListSkills'
 >;
 
@@ -41,15 +41,11 @@ RootStackParamList,
 export default function App() {
 return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Home" component={MainScreen}/>
-      <Stack.Navigator>
-        <Stack.Screen name="Home" component={MainScreen} />
-        <Stack.Screen name="ViewDetails" component={ViewDetails}
-        options={{ animation: 'slide_from_bottom' }} />
-        <Stack.Screen name="ListSkills" component={ListSkills}/>
-        </Stack.Navigator>
-      </Stack.Navigator>  
+      <Tab.Navigator>
+        <Tab.Screen name="Home" component={MainScreen}/>
+        <Tab.Screen name="ViewDetails" component={ViewDetails} />
+        <Tab.Screen name="ListSkills" component={ListSkills}/>
+       </Tab.Navigator> 
     </NavigationContainer>
   );
   
