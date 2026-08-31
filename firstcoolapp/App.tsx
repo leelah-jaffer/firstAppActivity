@@ -135,8 +135,8 @@ function MainScreen({navigation}: MainScreenProps) {
 //ViewDetails Function, this is the second screen that will be displayed when the button is pressed
 
 function ViewDetails( {navigation, route}: ViewDetailsProps) {
-  const NameGet = route.params.NameSend;
-  const SurnameGet = route.params.SurnameSend;
+  const NameGet = route.params?.NameSend;
+  const SurnameGet = route.params?.SurnameSend;
 
 
   
