@@ -41,9 +41,15 @@ TabParamList,
 export default function App() {
 return (
     <NavigationContainer>
-      <Tab.Navigator screenOptions={{ tabBarStyle: { marginTop: 30,},}}>
+      <Tab.Navigator screenOptions={{ tabBarStyle: { marginTop: 70,},}}>
         <Tab.Screen name="Home" component={MainScreen}/>
-        <Tab.Screen name="ViewDetails" component={ViewDetails} />
+        <Tab.Screen
+        name="ViewDetails"
+        component={ViewDetails}
+        initialParams={{
+          NameSend: '',
+          SurnameSend: ''
+        }} />
         <Tab.Screen name="ListSkills" component={ListSkills}/>
        </Tab.Navigator> 
     </NavigationContainer>
@@ -143,10 +149,9 @@ function ViewDetails( {navigation, route}: ViewDetailsProps) {
   const [blockArray] = useState<ImageSourcePropType[]>([
     undefined,
 
- 
-  require('./_images/kotlin.png'),
-  require ('./_images/python.jpg'),
   require('./_images/react-native.png'),
+  require ('./_images/python.jpg'),
+  require('./_images/kotlin.png'),
 ]);
 
   const [iSelected, setIntValue] = useState(0);
@@ -155,9 +160,9 @@ function ViewDetails( {navigation, route}: ViewDetailsProps) {
   
 
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', paddingTop: 50}}>
       <View style={{ flex: 0, alignItems: 'center', justifyContent: 'center' }}>
-      <Text style={{fontWeight: 'bold', fontSize: 20}}>Hello {NameGet} {SurnameGet} !</Text>
+      <Text style={{fontWeight: 'bold', fontSize: 20, }}>Hello {NameGet} {SurnameGet} !</Text>
       <Text>Please select a language:</Text>
       </View>
 
@@ -260,9 +265,12 @@ function ListSkills({ navigation, route}: ListSkillsProps) {
     <View style={styles.appContainer}>
       <SafeAreaView>
         <ScrollView>
-<View style={styles.mainImage}>
-  <Image style={styles.bannerImg} source={require('./_images/banner.jpg')}/>
-    </View>
+<View style={styles.bannerContainer}>
+  <Image 
+    style={styles.bannerImg} 
+    source={require('./_images/banner.jpg')}
+  />
+</View>
 
     <Text style={styles.welcomeText}>List Your Skills</Text>
     <View style={styles.inputContainer}>
@@ -413,21 +421,26 @@ radioGroup: {
 },
 
 container: {
-   width: 10,
-   height: 10,
-   alignContent: 'center'
+  width: '100%',
+  alignItems: 'center',
+  justifyContent: 'center',
 },
 
 viewImage: {
-   width: 150,
-   height: 150,
-   alignContent: 'center'
+  width: 150,
+  height: 150,
+  resizeMode: 'contain',
+},
 
+bannerContainer: {
+  width: '100%',
+  alignItems: 'center',
 },
 
 bannerImg: {
-  height: 350,
-  alignContent: 'center'
+  width: '100%',
+  height: 200,
+  resizeMode: 'contain',
 },
 
 inputContainer: {
