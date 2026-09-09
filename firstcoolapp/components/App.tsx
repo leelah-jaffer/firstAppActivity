@@ -1,18 +1,18 @@
-import { StatusBar } from 'expo-status-bar';
+
 import { Text, View, TextInput, Button, Image, ScrollView, SafeAreaView, Animated, ViewStyle, StyleProp, ImageSourcePropType, TouchableOpacity} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator, NativeStackScreenProps } from '@react-navigation/native-stack';
+
 import { useState, useRef, useEffect, ReactNode } from 'react';
 import { RadioButton} from 'react-native-paper';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { MaterialTopTabScreenProps } from '@react-navigation/material-top-tabs';
 import styles from '../components/Styles';
-import FadeInView from './Animations';
+
 
 
 
  type TabParamList = {
-   Home: undefined;
+   
    ViewDetails: {
     NameSend: string;
     SurnameSend: string; 
@@ -23,10 +23,7 @@ import FadeInView from './Animations';
 
 const Tab = createMaterialTopTabNavigator<TabParamList>();
 
-type MainScreenProps = MaterialTopTabScreenProps<
-TabParamList,
-'Home'
->;
+
 
 type ViewDetailsProps =  MaterialTopTabScreenProps<
 TabParamList,
@@ -59,7 +56,6 @@ return (
   
 };
 
-// MainScreen Function
 
 
 
@@ -238,15 +234,6 @@ function ListSkills({ navigation, route}: ListSkillsProps) {
   )
 }
 
-function isEmpty(value : any){
-  return(
-    (value == null) ||
-
-    (value.hasOwnProperty('length') && value.length === 0) ||
-
-    (value.constructor === Object && Object.keys(value).length === 0)
-  )
-}
 
 
 

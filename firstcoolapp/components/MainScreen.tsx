@@ -1,3 +1,30 @@
+import { StatusBar } from 'expo-status-bar';
+import { createMaterialTopTabNavigator, MaterialTopTabScreenProps } from '@react-navigation/material-top-tabs';
+import { Button, Text, TextInput, View, Image, ScrollView, SafeAreaView, TouchableOpacity } from 'react-native';
+import { useState } from 'react';
+import styles from '../components/Styles';
+import FadeInView from './Animations';
+import { createNativeStackNavigator, NativeStackScreenProps } from '@react-navigation/native-stack';
+ 
+ 
+ 
+ 
+ 
+ 
+ type TabParamList = {
+      Home: undefined;
+ };
+   
+
+
+const Tab = createMaterialTopTabNavigator<TabParamList>();
+
+type MainScreenProps = MaterialTopTabScreenProps<
+TabParamList,
+'Home'
+>;
+
+
 function MainScreen({navigation}: MainScreenProps) {
 
   
@@ -58,6 +85,7 @@ function MainScreen({navigation}: MainScreenProps) {
           }
           }}
         />
+
 </FadeInView>
 {/*// In line error, a quicker way for the error */}
 <Text style={Error? styles.errorRed : styles.blank}>
@@ -74,3 +102,15 @@ function MainScreen({navigation}: MainScreenProps) {
     </View>
   );
 }
+
+function isEmpty(value : any){
+  return(
+    (value == null) ||
+
+    (value.hasOwnProperty('length') && value.length === 0) ||
+
+    (value.constructor === Object && Object.keys(value).length === 0)
+  )
+}
+
+export default MainScreen;
